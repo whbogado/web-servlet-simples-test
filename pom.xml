@@ -15,7 +15,6 @@
         <project.reporting.outputEncoding></project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
-        <cucumber.options>--format html:target/cucumber --tags @wip,@foo</cucumber.options>
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
     </properties>
 
@@ -105,24 +104,14 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.0</version>
                 <configuration>
-                        <!--
                     <server>Apache Tomcat 7.0.34</server>
                     <url>http://localhost:8080/manager/text</url>
                     <update>true</update>
                     <port>8080</port>
-                        -->
-                    <systemProperties>
-                        <!--
-                        <appserver.base>C:\Program Files\Apache Software Foundation\Apache Tomcat 7.0.34</appserver.base>
-                        <appserver.home>/Users/olamy/dev/sources/tomcat/maven-plugin-svn/target/checkout/target/appserver-home</appserver.home>
-                        <derby.system.home>/Users/olamy/dev/sources/tomcat/maven-plugin-svn/target/checkout/target/appserver-base/logs</derby.system.home>
-                        <java.io.tmpdir>/Users/olamy/dev/sources/tomcat/maven-plugin-svn/target/checkout/target</java.io.tmpdir>
-                        -->
-                    </systemProperties>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>tomcat-run</id>
+                        <id>tomcat-deploy</id>
                         <goals>
                             <goal>deploy</goal>
                         </goals>
@@ -141,28 +130,23 @@
                 </executions>            
             </plugin>
             <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.12.4</version>
                 <executions>
                     <execution>
                         <goals>
-                            <goal>integration-test</goal>
                             <goal>verify</goal>
+                            <goal>integration-test</goal>
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <systemPropertyVariables>
-                        <cucumber.options>${cucumber.options}</cucumber.options>
-                    </systemPropertyVariables>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12.4</version>
-                <configuration>
-                    <skip>false</skip>
-                </configuration>
             </plugin>
         </plugins>
     </build>

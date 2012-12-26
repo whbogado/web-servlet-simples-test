@@ -3,6 +3,7 @@
         <action>
             <actionName>run</actionName>
             <goals>
+                <goal>verify</goal>
                 <goal>package</goal>
             </goals>
             <properties>
@@ -31,5 +32,12 @@
                 <netbeans.deploy.profilemode>true</netbeans.deploy.profilemode>
                 <netbeans.deploy.clientUrlPart></netbeans.deploy.clientUrlPart>
             </properties>
+        </action>
+        <action>
+            <actionName>test</actionName>
+            <goals>
+                <goal>verify</goal>
+                
+            </goals>
         </action>
     </actions>

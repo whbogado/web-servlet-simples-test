@@ -33,30 +33,27 @@ public class Modelo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
+        try (PrintWriter out = response.getWriter()) {
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Modelo de Servlet</title>");            
+            out.println("<title>Modelo de Servlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Modelo de Servlet em " + request.getContextPath() + "</h1>");
             out.println("<form action='modelo' method='post'>");
             out.println("Nome: <input type='text' name='nome'/><br/>");
-            out.println("<input type='submit' value='Enviar'/><br/>");
+            out.println("<input type='submit' name='enviar' value='Enviar'/><br/>");
             out.println("</form>");
             String nome = request.getParameter("nome");
             if  (request.getMethod().equalsIgnoreCase("post")) {
                 if (nome == null || nome.trim().isEmpty()) {
                     out.println("<h2 style='color: red'><b>Informe o nome!</b></h2>");
                 } else {
-                    out.println("<h2>Olá, <b>" + nome + "</b></h2>");
+                    out.println("<h2>Olá, " + nome + "</h2>");
                 }
             }
             out.println("</body>");
             out.println("</html>");
-        } finally {            
-            out.close();
         }
     }
 
