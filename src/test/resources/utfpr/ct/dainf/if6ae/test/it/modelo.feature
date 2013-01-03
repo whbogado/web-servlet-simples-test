@@ -12,3 +12,9 @@ Feature: Servlet should run
     And I fill in "nome" with "John Doe"
     And I click the "enviar" button
     Then I should see "Olá, John Doe"
+
+  Scenario: Submit an empty value
+    When I navigate to "/modelo"
+    And I fill in "nome" with ""
+    And I click the "enviar" button
+    Then I should see "Informe o nome!"

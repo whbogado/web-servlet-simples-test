@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utfpr.ct.dainf.if6ae.exemplos.suporte.ParamUtil;
 
 /**
  * Universidade Tecnológica Federal do Paraná
@@ -32,7 +33,11 @@ public class Modelo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ParamUtil paramUtil = new ParamUtil(request.getParameterMap());
         response.setContentType("text/html;charset=UTF-8");
+        // Usando este formato de try, em Java 7, o método close() de qualquer
+        // classe que implementa java.lang.AutoCloseable é chamado automaticamente
+        // ao final do bloco. Por isto, não há necessidade de catch e/ou finally.
         try (PrintWriter out = response.getWriter()) {
             out.println("<html>");
             out.println("<head>");
@@ -44,7 +49,7 @@ public class Modelo extends HttpServlet {
             out.println("Nome: <input type='text' name='nome'/><br/>");
             out.println("<input type='submit' name='enviar' value='Enviar'/><br/>");
             out.println("</form>");
-            String nome = request.getParameter("nome");
+            String nome = paramUtil.getText("nome");
             if  (request.getMethod().equalsIgnoreCase("post")) {
                 if (nome == null || nome.trim().isEmpty()) {
                     out.println("<h2 style='color: red'><b>Informe o nome!</b></h2>");

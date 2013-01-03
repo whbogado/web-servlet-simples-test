@@ -1,4 +1,4 @@
-package utfpr.ct.dainf.if6ae.tests.steps;
+package utfpr.ct.dainf.if6ae.test.it.steps;
 
 import cucumber.annotation.After;
 import cucumber.annotation.Before;
@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
- *
+ * Executa os testes de intergração usando Cucumber e WebDriver.
  * @author Wilson
  */
 public class ModeloSteps {
@@ -47,7 +47,11 @@ public class ModeloSteps {
     @When("^I fill in \"([^\"]*)\" with \"([^\"]*)\"$")
     public void fillIn(String fieldName, String value) throws Throwable {
         WebElement we = driver.findElement(By.name(fieldName));
-        we.sendKeys(value);
+        if (value.isEmpty()) {
+            we.clear();
+        } else {
+            we.sendKeys(value);
+        }
     }
 
     @When("^I click the \"([^\"]*)\" button$")
