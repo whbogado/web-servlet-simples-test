@@ -4,7 +4,7 @@
  */
 package utfpr.ct.dainf.if6ae.test.it;
 
-import cucumber.junit.Cucumber;
+import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)

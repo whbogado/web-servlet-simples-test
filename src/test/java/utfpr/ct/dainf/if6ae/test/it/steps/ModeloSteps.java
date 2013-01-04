@@ -1,10 +1,10 @@
 package utfpr.ct.dainf.if6ae.test.it.steps;
 
-import cucumber.annotation.After;
-import cucumber.annotation.Before;
-import cucumber.annotation.en.Given;
-import cucumber.annotation.en.Then;
-import cucumber.annotation.en.When;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,15 +21,15 @@ public class ModeloSteps {
     private static final String CONTEXT = "/servlet-simples-test";
     private static final String CONTEXT_URL = BASE_URL + CONTEXT;
 
-    WebDriver driver;
+    private static WebDriver driver;
 
     @Before
-    public void before() {
+    public static void before() {
         driver = new FirefoxDriver();
     }
 
     @After
-    public void after() {
+    public static void after() {
         driver.close();
     }
 
