@@ -10,10 +10,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 /**
  * Executa os testes de intergração usando Cucumber e WebDriver.
- * @author Wilson
+ * @author Wilson Horstmeyer Bogado <wilson@utfpr.edu.br>
  */
 public class ModeloSteps {
 
@@ -25,7 +26,8 @@ public class ModeloSteps {
 
     @Before
     public static void before() {
-        driver = new FirefoxDriver();
+//         driver = new FirefoxDriver(); // necessita acesso ao Firefox
+        driver = new HtmlUnitDriver();
     }
 
     @After
@@ -37,7 +39,8 @@ public class ModeloSteps {
      * Navigates to a URL relative to the context path.
      * The URL must start with a slash (/).
      * Example: When I navigate to "/home/form"
-     * @param url The relative URL.
+     * @param relURL Relative URL to navegate to
+     * @throws java.lang.Throwable
      */
     @When("^I navigate to \"([^\"]*)\"$")
     public void navigateTo(String relURL) throws Throwable {
